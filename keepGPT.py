@@ -1,4 +1,4 @@
-import io
+import time
 import os.path
 import json
 
@@ -9,41 +9,47 @@ api_key = ''
 folder_name = 'KeepNotes'
 
 def main():
-    
     openai.api_key = api_key
-    prompt = 'What are my notes about? Create a summary and title.'
+    prompt = 'Sort this note into a catagory and explain why. The list of catagories is {physics, games, life, programming, work}. You can create another catagory if needed.'
 
     json_notes = read_json(folder_name)
-
+    
+    #Asks the same prompt with each note
     for note in json_notes:
-        print(note['title'])
+            try:
+                response = ask(prompt, 'Title: ' + note['title'] + note['textContent'])
+                print('\n' + response['choices'][0]['message']['content'])
+            # Waits for the rate limit and tries again
+            except openai.error.RateLimitError as error:
+                time.sleep(21)
+                response = ask('\n' + prompt, 'Title: ' + note['title'] + note['textContent'])
+                print(response['choices'][0]['message']['content'])
 
-    notes = "\n".join(json.dumps(note) for note in json_notes)
-    response = ask(prompt, notes)
-    print(response)
 
-def read_json(notePath):
-    json_notes = []
-    count = 0
-    for filename in os.listdir(notePath):
-        if filename.endswith('.json') & (count < 2):
-            file_path = os.path.join(notePath,filename)
-            count += 1
-            with open(file_path) as file:
-                json_data = json.load(file)
-                json_notes.append(json_data)
-    return json_notes
 
+
+#Creates a gpt-3.5 Completetion. Uses prompts containing a note and a question.
 def ask(prompt, notes):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "You have access to a list of notes with title, date, text content, and links. The notes are listed here as JSON files: " + notes},
+            {"role": "system", "content": "You are a helpful assistant who processes notes."},
+            {"role": "user", "content": "The note is here: " + notes},
             {"role": "user", "content": prompt}
         ]
     )
     return response
+
+# Gathers all json files in the folder and returns a list of them
+def read_json(notePath):
+    json_notes = []
+    for filename in os.listdir(notePath):
+        if filename.endswith('.json'):
+            file_path = os.path.join(notePath,filename)
+            with open(file_path) as file:
+                json_data = json.load(file)
+                json_notes.append(json_data)
+    return json_notes
 
 if __name__ == '__main__':
     main()
