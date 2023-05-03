@@ -1,2 +1,2 @@
 # chatgpt-integration
-Uses the openAI API and Google API to give chatGPT access to Google Keep notes
+Gives chatGPT access to Google Keep notes. Uses the openAI and Google API.
