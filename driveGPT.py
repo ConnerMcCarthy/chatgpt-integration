@@ -61,7 +61,11 @@ def main():
         print(f'An error occurred: {error}')
 
     openai.api_key = api_key
+<<<<<<< HEAD
     #prompt = 'Give one random word' #+ gnote.text
+=======
+    prompt = 'Give one random word' #+ gnote.text
+>>>>>>> 14ae294f81ca611d4f14c1d8dce18d43c5ee835b
     #response = ask(prompt)
     #print(response)
 
@@ -77,4 +81,8 @@ def ask(prompt):
     return response.choices[0].text.strip()
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> 14ae294f81ca611d4f14c1d8dce18d43c5ee835b
