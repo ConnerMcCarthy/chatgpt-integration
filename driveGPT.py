@@ -11,7 +11,7 @@ from googleapiclient.errors import HttpError
 import openai
 
 noteID = '1bX2GAEjz0u-Ea7FIsQ0CdvVtdy5AeOjaSJ5P9ZRq9oY1S3p1cSYY_k5fn-5VVw'
-api_key = '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'
+api_key = ''
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/drive']
