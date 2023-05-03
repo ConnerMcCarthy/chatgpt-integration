@@ -1,2 +1,2 @@
 # chatgpt-integration
-ChatGPT integration with json and google cloud API 
+ChatGPT integration with python, json and the google cloud API 
