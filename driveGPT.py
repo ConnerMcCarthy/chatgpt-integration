@@ -11,7 +11,6 @@ from googleapiclient.errors import HttpError
 import openai
 
 noteID = '1bX2GAEjz0u-Ea7FIsQ0CdvVtdy5AeOjaSJ5P9ZRq9oY1S3p1cSYY_k5fn-5VVw'
-api_key = ''
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -60,18 +59,16 @@ def main():
         # TODO(developer) - Handle errors from drive API.
         print(f'An error occurred: {error}')
 
-    openai.api_key = api_key
-<<<<<<< HEAD
+    api_path = "./secret.txt"
+    openai.api_key  = read_api_key(api_path)
+    
     #prompt = 'Give one random word' #+ gnote.text
-=======
-    prompt = 'Give one random word' #+ gnote.text
->>>>>>> 14ae294f81ca611d4f14c1d8dce18d43c5ee835b
     #response = ask(prompt)
     #print(response)
 
 def ask(prompt):
     response = openai.Completion.create(
-        engine = 'gpt-3.5-turbo',
+        engine = 'text-davinci-003',
         prompt=prompt,
         max_tokens=100,
         n=1,
@@ -80,9 +77,10 @@ def ask(prompt):
     )
     return response.choices[0].text.strip()
 
+def read_api_key(api_path):
+    with open(api_path, 'r') as file:
+        api_key = file.read().strip()
+    return api_key
+
 if __name__ == '__main__':
-<<<<<<< HEAD
     main()
-=======
-    main()
->>>>>>> 14ae294f81ca611d4f14c1d8dce18d43c5ee835b

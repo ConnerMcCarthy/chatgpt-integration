@@ -1,5 +1,5 @@
 # Outline of chatGPT Gmail connection
-# TODO gather emails from last day, summarize and double summarize
+# TODO gather emails from last day, summarize until there is a daily summary
 # Written by ChatGPT to be edited later
 
 import os
