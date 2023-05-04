@@ -1,10 +1,20 @@
+# Using langchain, tiktoken, and hugging face to train an openAI model
+
 import openai
 import os
 import tiktoken
 
+
+
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+
+#tokenizer = tiktoken.get_encoding('cl100k_base')
+tokenizer = tiktoken.get_encoding('p50k_base')
+
+from datasets import load_dataset
+data = load_dataset('ConnerMcCarthy/notes')
 
 def main():
 
@@ -28,6 +38,12 @@ def read_api_key(api_path):
     with open(api_path, 'r') as file:
         api_key = file.read().strip()
     return api_key
+
+def tiktoken_len(text):
+    tokens = tokenizer.encode(
+        text,
+        disallowed_special=()
+    )
 
 if __name__ == '__main__':
     main()
