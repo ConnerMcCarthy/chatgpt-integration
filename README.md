@@ -7,5 +7,5 @@ App Goals:
 2. Summarize youtube video transcripts
 3. Sentiment analysis on internet forums
 
-4. Connect with other models using huggingface, pyTorch, vector databases
+4. Connect with other models using langchain, pyTorch, vector databases, huggingface
 5. Improve apps with multithreading
