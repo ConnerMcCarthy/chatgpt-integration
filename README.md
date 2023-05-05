@@ -1,4 +1,4 @@
-# chatgpt-integration
+# llm-exploration
 ChatGPT integration with python, json and the google cloud API 
 
 App Goals: 
