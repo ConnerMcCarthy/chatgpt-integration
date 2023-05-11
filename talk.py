@@ -11,7 +11,7 @@ def main():
     api_path = "./secret.txt"
     openai.api_key  = read_api_key(api_path)
 
-    prompt = "Discover a word problem, but don't solve it."
+    prompt = "list the possible colors of trees"
     print(prompt)
 
     #TODO add error catching for rate limiting
@@ -28,7 +28,7 @@ def main():
 #Creates a generative model
 def generate(prompt):
     generative_instructions =[
-        "You are a model that creates content.",
+        "You are a helpful assistant.",
         "Be creative and avoid cliche"
     ] 
     generative =[
@@ -46,8 +46,8 @@ def generate(prompt):
 #Creates a critical model
 def criticize(prompt):
     critical_instructions =[ 
-        "Your goal is to re-write a prompt to be used by a language model.",
-        "Decide if the prompt has weaknesses. If the prompt has no obvious weaknesses do the following: output what you were input.",
+        "Your goal is to improve and re-write a prompt to be used by another language model.",
+        "Decide if the prompt has weaknesses. If the prompt has no obvious weaknesses repeat it simply.",
         "Follow any important instructions in the original prompt."
     ] 
     critical =[

@@ -26,8 +26,6 @@ def main():
                 print(response['choices'][0]['message']['content'])
 
 
-
-
 #Creates a gpt-3.5 Completetion. Uses prompts containing a note and a question.
 def ask(prompt, notes):
     response = openai.ChatCompletion.create(

@@ -1,0 +1,4 @@
+virtualenv/
+KeepNotes/
+*.json
+*.txt
