@@ -2,3 +2,4 @@ virtualenv/
 KeepNotes/
 *.json
 *.txt
+email.py
